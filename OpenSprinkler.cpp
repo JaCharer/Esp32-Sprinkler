@@ -1051,15 +1051,15 @@ void OpenSprinkler::begin()
 	long tot = 0;
 	DEBUG_PRINTLN("Start SPIFFS....");
 	if (SPIFFS.begin()) {
-	/*	Dir dir = SPIFFS.openDir("/"); //Charer change
-		while (dir.next()) { DEBUG_PRINT(dir.fileName()); DEBUG_PRINT("  "); DEBUG_PRINTLN(dir.fileSize()); tot += dir.fileSize(); }
+		//Dir dir = SPIFFS.openDir("/"); //Charer change
+		//while (dir.next()) { DEBUG_PRINT(dir.fileName()); DEBUG_PRINT("  "); DEBUG_PRINTLN(dir.fileSize()); tot += dir.fileSize(); }
 		status.has_sd = 1;
-		DEBUG_PRINT("Tot.bytes="); DEBUG_PRINTLN(tot);
-		lcd.setCursor(0, YFACTOR);
-		lcd.print("Spiffs size=");
-		lcd.print(tot);
-		lcd.display();
-		delay(1000);*/
+		//DEBUG_PRINT("Tot.bytes="); DEBUG_PRINTLN(tot);
+		//lcd.setCursor(0, YFACTOR);
+		//lcd.print("Spiffs size=");
+		//lcd.print(tot);
+		//lcd.display();
+		delay(1000);
 	}
 	else DEBUG_PRINTLN("Coundn't start SPIFFS");
 #endif
