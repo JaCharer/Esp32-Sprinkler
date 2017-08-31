@@ -23,6 +23,7 @@
 
 #ifndef _UTILS_H
 #define _UTILS_H
+#include <SPIFFS.h> //Charer change
 
 #if defined(ARDUINO)
 

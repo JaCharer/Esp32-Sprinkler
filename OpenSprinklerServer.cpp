@@ -23,6 +23,7 @@
 
 #include "OpenSprinkler.h"
 #include "OpenSprinklerProgram.h"
+#include <SPIFFS.h> //Charer change
 
 // External variables defined in main ion file
 #if defined(ARDUINO)

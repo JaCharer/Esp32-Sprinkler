@@ -69,6 +69,9 @@ This way you can use expander for all functions (interrupt donot work right now)
 #define OS_HW_VERSION    0.0      // it will define releases
 //------ ESP32 basic definitions-------------------------------------------------------
 #elif defined(ESP32)
+#define SDA_PIN          21       //Charrer change
+#define SCL_PIN          22       //Charrer change
+#define OS_HW_VERSION    0.0      //Charrer change
 //#define WIFIMANAGER
 #else ////////////////////// flag for not compatible libraries ESP8266////// 
 #define SDFAT                                   // SD card on 
@@ -415,6 +418,8 @@ This way you can use expander for all functions (interrupt donot work right now)
 //#define INA219											// if INA219 board is present
 //#define OSBEE 0											// ==0 if is a battery powered board
 // OLED 128*64 DISPLAY
+//#include <Adafruit_SSD1306.h> //Charer change
+//#include <Adafruit_GFX.h> //Charer change
 #define LCD_SSD1306
 #define LCD_RST 12		
 #define LCD_ADDR 0x3c
@@ -445,7 +450,7 @@ This way you can use expander for all functions (interrupt donot work right now)
 #define BUT3_ON 1		//PIN input:1= Vcc, 0 =GND
 #define LCDI2C								//:i2c LCD
 #define SPIFFSDFAT				  			//:no sd ....EMULATED ON fLASH
-#define ADDITIONAL_SENSORS ESP8266_C        //:additional sensors to ESP 
+//#define ADDITIONAL_SENSORS ESP8266_C        //:additional sensors to ESP 
 //#define EEPROM_ESP                          //modify in libsel.h
 
 #endif

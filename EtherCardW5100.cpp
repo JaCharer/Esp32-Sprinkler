@@ -39,6 +39,7 @@ char* PASSWORD = "paolo-48";
 extern OpenSprinkler os;
 
 #include "EtherCardW5100.h"
+#include <SPIFFS.h> //Charer
 
 static byte ms_line = MIN_LCD_LINE;
 void EtherCardW5100::message(String buf) {
@@ -1494,7 +1495,8 @@ void EtherCardW5100::clientIcmpRequest ( const uint8_t *destip )
 uint8_t EtherCardW5100::packetLoopIcmpCheckReply ( const uint8_t *ip_monitoredhost )
 {
 #ifndef MY_PING
-	return Ping.ping(IPAddress(ip_monitoredhost[0], ip_monitoredhost[1], ip_monitoredhost[2], ip_monitoredhost[3]));
+	return 1;
+	// return Ping.ping(IPAddress(ip_monitoredhost[0], ip_monitoredhost[1], ip_monitoredhost[2], ip_monitoredhost[3])); //Charer
 	//	if (WiFi.status() != WL_CONNECTED) return true; else return false;
 #else
     if ( ping.asyncComplete ( ping_result ) )

@@ -52,7 +52,9 @@ extern "C" {
 #ifdef LCDI2C
 #ifdef LCD_SSD1306
 
-#include "lib\Adafruit_SSD1306.h"
+//#include "lib\Adafruit_SSD1306.h"
+#include <Adafruit_SSD1306.h> //Charer change
+
 #else
 #include <LiquidCrystal_I2C.h>
 #endif

@@ -36,6 +36,7 @@
 
 #if defined(ARDUINO)
 #if defined(ESP8266) || defined(ESP32)
+#include <SPIFFS.h>
 #ifndef SDFAT
 #include <FS.h>
 //#include "SPIFFSdFat.h"
@@ -1159,7 +1160,7 @@ char LOG_PREFIX[] = "./logs/";
  */
 void make_logfile_name ( char *name )
 {
-#if defined(ARDUINO) && !defined(ESP8266)
+#if defined(ARDUINO) && !defined(ESP8266) && !defined(ESP32) //Charer change
     sd.chdir ( "/" );
 #endif
     strcpy ( tmp_buffer+TMP_BUFFER_SIZE-10, name );

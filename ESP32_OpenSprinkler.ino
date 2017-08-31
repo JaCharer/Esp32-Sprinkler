@@ -56,7 +56,7 @@ Original Opensprinkler code commences below here
 #include "Config.h"
 #include "Defines.h"
 //necessary with deep search
-#include <Time/TimeLib.h>
+#include <TimeLib.h> //Charer change
 
 #ifdef OPENSPRINKLER_ARDUINO
 
