@@ -69,9 +69,9 @@ This way you can use expander for all functions (interrupt donot work right now)
 #define OS_HW_VERSION    0.0      // it will define releases
 //------ ESP32 basic definitions-------------------------------------------------------
 #elif defined(ESP32)
-#define SDA_PIN          21       //Charrer change
-#define SCL_PIN          22       //Charrer change
-#define OS_HW_VERSION    0.0      //Charrer change
+#define SDA_PIN          26       //Charrer change
+#define SCL_PIN          25       //Charrer change
+#define OS_HW_VERSION    0.1      //Charrer change
 //#define WIFIMANAGER
 #else ////////////////////// flag for not compatible libraries ESP8266////// 
 #define SDFAT                                   // SD card on 
@@ -418,10 +418,8 @@ This way you can use expander for all functions (interrupt donot work right now)
 //#define INA219											// if INA219 board is present
 //#define OSBEE 0											// ==0 if is a battery powered board
 // OLED 128*64 DISPLAY
-//#include <Adafruit_SSD1306.h> //Charer change
-//#include <Adafruit_GFX.h> //Charer change
 #define LCD_SSD1306
-#define LCD_RST 12		
+#define LCD_RST -1		
 #define LCD_ADDR 0x3c
 #define OPENSPRINKLER_ARDUINO_W5100      //:required for ESP8266 not using shift registers
 #define OPENSPRINKLER_ARDUINO_DISCRETE      //direct connection pin relay board
@@ -435,7 +433,7 @@ This way you can use expander for all functions (interrupt donot work right now)
 #define PIN_STN_S06		0x00    //NA
 #define PIN_STN_S07		0x00	//NA
 #define PIN_STN_S08		0x00	//NA
-//#define PCF8574_M        //PCF8574 are used for i/o
+#define PCF8574_M        //PCF8574 are used for i/o
 #define STA_HIGH LOW     // low station output on for Relay
 #define STA_LOW HIGH     // high station output off for Relay
 //#define DS1307RTC RTC_MCP7940
@@ -445,9 +443,9 @@ This way you can use expander for all functions (interrupt donot work right now)
 #define PIN_BUTTON_1 0x25			//button are on  PCF8574 expaneder adr 0x3F
 #define PIN_BUTTON_2 0x26
 #define PIN_BUTTON_3 0x27
-#define BUT1_ON 1		//PIN input:1= Vcc, 0 =GND
-#define BUT2_ON 1		//PIN input:1= Vcc, 0 =GND
-#define BUT3_ON 1		//PIN input:1= Vcc, 0 =GND
+#define BUT1_ON 0		//PIN input:1= Vcc, 0 =GND
+#define BUT2_ON 0		//PIN input:1= Vcc, 0 =GND
+#define BUT3_ON 0		//PIN input:1= Vcc, 0 =GND
 #define LCDI2C								//:i2c LCD
 #define SPIFFSDFAT				  			//:no sd ....EMULATED ON fLASH
 //#define ADDITIONAL_SENSORS ESP8266_C        //:additional sensors to ESP 

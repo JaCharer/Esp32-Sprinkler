@@ -755,7 +755,8 @@ byte server_change_program ( char *p )
     }
     else
     {
-        strcpy_P ( prog.name, _str_program );
+        //strcpy_P ( prog.name, _str_program );
+		strcpy ( prog.name, _str_program ); //Charer change
         itoa ( ( pid==-1 ) ? ( pd.nprograms+1 ) : ( pid+1 ), prog.name+8, 10 );
     }
 

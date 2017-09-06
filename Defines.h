@@ -29,7 +29,7 @@
 #include "Config.h"
 #include "libsel.h"
 /** Firmware version, hardware version, and maximal values */
-#define OS_FW_VERSION			216		// Firmware version: 216 means 2.1.6
+#define OS_FW_VERSION			215		// Firmware version: 216 means 2.1.6 //Charer change
 										// if this number is different from the one stored in non-volatile memory
 										// a device reset will be automatically triggered
 
@@ -186,7 +186,6 @@
 #define DEFAULT_WEATHER_KEY       "e409b2aeaa5e3ffe"	// replace this key with your own
 #define DEFAULT_JAVASCRIPT_URL    "https://ui.opensprinkler.com/js"
 #define DEFAULT_WEATHER_URL       "weather.opensprinkler.com"
-
 
 /** Macro define of each option
   * Refer to OpenSprinkler.cpp for details on each option

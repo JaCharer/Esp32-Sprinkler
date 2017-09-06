@@ -115,9 +115,15 @@ void print_message(int pos) {
 }
 void write_to_file(const char *name, const char *data, int size, int pos, bool trunc) {
 	if (!os.status.has_sd)  return;
-
+	DEBUG_PRINT("File name to write: "); //Charer change
+	DEBUG_PRINTLN(name); //Charer change
+	DEBUG_PRINTLN(sizeof(name)); //Charer change
+	
 	char fn[12];
-	strcpy_P(fn, name);
+	DEBUG_PRINTLN(fn); //Charer change
+	//strcpy_P(fn, name);
+	strcpy(fn, name);
+	
 #if !defined(ESP8266) && !defined(ESP32)
 	sd.chdir("/");
 	SdFile file;
@@ -158,16 +164,18 @@ void write_to_file(const char *name, const char *data, int size, int pos, bool t
 
 bool read_from_file(const char *name, char *data, int maxsize, int pos) {
   if (!os.status.has_sd)  { data[0]=0; return false; }
-
+	
+  DEBUG_PRINT("File name to read is: "); DEBUG_PRINTLN(name); //Charer change
+  
   char fn[12];
-  strcpy_P(fn, name);
+  //strcpy_P(fn, name);
+  strcpy(fn, name); //Charer change
 #if !defined(ESP8266) && !defined(ESP32)
   sd.chdir("/");
 
   SdFile file;
   int ret = file.open(fn, O_READ );
 #else //ESP8266
-  
   memmove(fn + 1, fn, strlen(fn)+1); fn[0] = '/';
   DEBUG_PRINT("fileOpen:"); DEBUG_PRINTLN(fn);
   File file = SPIFFS.open(fn, "r");
@@ -197,7 +205,8 @@ void remove_file(const char *name) {
   if (!os.status.has_sd)  return;
 
   char fn[12];
-  strcpy_P(fn, name);
+  strcpy(fn, name);
+  //strcpy_P(fn, name);
 #if !defined(ESP8266) && !defined(ESP32)
   sd.chdir("/");
   if (!sd.exists(fn))  return;

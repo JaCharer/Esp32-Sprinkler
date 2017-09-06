@@ -145,13 +145,16 @@ static void getweather_callback ( byte status, uint16_t off, uint16_t len )
 void GetWeather()
 {
     // perform DNS lookup for every query
-	char weather_Url[15];
+	char weather_Url[MAX_WEATHERURL]; //Charer change
+	//char weather_Url[15];
     nvm_read_block ( weather_Url, ( void* ) ADDR_NVM_WEATHERURL, MAX_WEATHERURL );
     ether.dnsLookup ( weather_Url, true );
+	DEBUG_PRINTLN("Sprawdzam pogode"); //Charer change
 	
     //bfill=ether.tcpOffset();
     char tmp[30];
     read_from_file ( wtopts_filename, tmp, 30 );
+	DEBUG_PRINTLN("Przeczytalem z pliku"); //Charer change
     BufferFiller bf = ( uint8_t* ) tmp_buffer;
     bf.emit_p ( PSTR ( "$D.py?loc=$E&key=$E&fwv=$D&wto=$S" ),
                 ( int ) os.options[OPTION_USE_WEATHER],
@@ -162,6 +165,7 @@ void GetWeather()
     // copy string to tmp_buffer, replacing all spaces with _
     char *src=tmp_buffer+strlen ( tmp_buffer );
     char *dst=tmp_buffer+TMP_BUFFER_SIZE-12;
+	DEBUG_PRINT("temp_buffer :"); //Charer change
 	DEBUG_PRINTLN(tmp_buffer);
     char c;
     // url encode. convert SPACE to %20
@@ -184,7 +188,10 @@ void GetWeather()
     *dst = *src;
     uint16_t _port = ether.hisport; // save current port number
     ether.hisport = 80;
+	DEBUG_PRINT("dst :"); //Charer change
 	DEBUG_PRINTLN(dst);
+	DEBUG_PRINT("weather_Url :"); //Charer change
+	DEBUG_PRINTLN(weather_Url); //Charer change
     ether.browseUrl ( PSTR ( "/weather" ), dst, weather_Url, getweather_callback );
     ether.hisport = _port;
 }

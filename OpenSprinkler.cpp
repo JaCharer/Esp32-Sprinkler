@@ -809,8 +809,11 @@ void OpenSprinkler::lcd_start()
 	lcd.print("start..V.2.1.6");
 
 #else
+	DEBUG_PRINTLN("starram sie odpalic LCD");//Charer change
 	lcd.begin(SSD1306_SWITCHCAPVCC, 0x3c);
+	DEBUG_PRINTLN("zrobile lcd.begin");//Charer change
 	lcd.display();
+	DEBUG_PRINTLN("zrobile lcd.display");//Charer change
 	delay(2000);
 	lcd.clearDisplay();
 	lcd.setTextColor(WHITE,BLACK); // white char clear background
@@ -837,7 +840,8 @@ void OpenSprinkler::begin()
 #endif
 
 	ScanI2c();
-
+	DEBUG_PRINTLN("ScanI2c done"); //Charer change
+	
 #ifdef OPENSPRINKLER_ARDUINO_DISCRETE
 #ifdef OSBEE
 #if OSBEE == 1	
@@ -964,7 +968,7 @@ void OpenSprinkler::begin()
     status.has_curr_sense = digitalRead ( PIN_CURR_DIGITAL ) ? 0 : 1;
     digitalWrite ( PIN_CURR_DIGITAL, LOW );
 #endif
-
+	DEBUG_PRINTLN("LCD Start"); //Charer change
     lcd_start();
 #ifndef LCD_SSD1306
     // define lcd custom icons
@@ -2016,7 +2020,11 @@ void OpenSprinkler::options_setup()
 	DEBUG_PRINTLN(strlen(DEFAULT_WEATHER_URL));
 	//while (d != 0) { d = eeprom_read_byte((byte*)ADDR_NVM_WEATHERURL + i++); DEBUG_PRINT(d); }
     byte curr_ver = nvm_read_byte ( ( byte* ) ( ADDR_NVM_OPTIONS+OPTION_FW_VERSION ) );
+	DEBUG_PRINT("Current version: ");//Charer change
 	DEBUG_PRINTLN((int)curr_ver);
+	
+	DEBUG_PRINT("OS_FW_VERSION: ");//Charer change
+	DEBUG_PRINTLN(OS_FW_VERSION); //Charer change
     // check reset condition: either firmware version has changed, or reset flag is up
     // if so, trigger a factory reset
     if ( curr_ver != OS_FW_VERSION || nvm_read_byte ( ( byte* ) ( ADDR_NVM_OPTIONS+OPTION_RESET ) ) ==0xAA )
@@ -2045,6 +2053,7 @@ void OpenSprinkler::options_setup()
         // 1. write non-volatile controller status
         nvdata_save();
 		DEBUG_PRINTLN("nvdata");
+		DEBUG_PRINTLN("Init stage 1 done"); //Charer change
         // 2. write string parameters
         nvm_write_block ( DEFAULT_PASSWORD, ( void* ) ADDR_NVM_PASSWORD, strlen ( DEFAULT_PASSWORD )+1 );
         nvm_write_block ( DEFAULT_LOCATION, ( void* ) ADDR_NVM_LOCATION, strlen ( DEFAULT_LOCATION )+1 );
@@ -2053,7 +2062,7 @@ void OpenSprinkler::options_setup()
 		DEBUG_PRINTLN(char(eeprom_read_byte((byte*)ADDR_NVM_JAVASCRIPTURL + strlen(DEFAULT_JAVASCRIPT_URL) + 2)&&0x0F));
 		nvm_write_block ( DEFAULT_WEATHER_URL, ( void* ) ADDR_NVM_WEATHERURL, strlen ( DEFAULT_WEATHER_URL )+1 );
         nvm_write_block ( DEFAULT_WEATHER_KEY, ( void* ) ADDR_NVM_WEATHER_KEY, strlen ( DEFAULT_WEATHER_KEY )+1 );
-
+		DEBUG_PRINTLN("Init stage 2 done"); //Charer change
         // 3. reset station names and special attributes, default Sxx
         tmp_buffer[0]='S';
         tmp_buffer[3]=0;
@@ -2068,13 +2077,20 @@ void OpenSprinkler::options_setup()
         tmp_buffer[1]='0';
         tmp_buffer[2]=0;
         int stepsize=sizeof ( StationSpecialData );
-		DEBUG_PRINTLN("Preparing files");
+		DEBUG_PRINTLN("Preparing files"); 
 		delay(1000);
+		DEBUG_PRINT("MAX_NUM_STATIONS = "); //Charer change
+		DEBUG_PRINTLN(MAX_NUM_STATIONS); //Charer change
+		DEBUG_PRINT("Attemping to write file: "); //Charer change
+		DEBUG_PRINTLN(stns_filename);//Charer change
         for ( i=0; i<MAX_NUM_STATIONS; i++ )
         {
-            write_to_file ( stns_filename, tmp_buffer, stepsize, i*stepsize, false );
+            
+			write_to_file ( stns_filename, tmp_buffer, stepsize, i*stepsize, false );
         }
 		DEBUG_PRINTLN("file written");
+		DEBUG_PRINTLN("Init stage 3 done"); //Charer change
+		
         // 4. reset station attribute bits
         // since we wiped out nvm, only non-zero attributes need to be initialized
         for ( i=0; i<MAX_EXT_BOARDS+1; i++ )
@@ -2083,12 +2099,13 @@ void OpenSprinkler::options_setup()
         }
         nvm_write_block ( tmp_buffer, ( void* ) ADDR_NVM_MAS_OP, MAX_EXT_BOARDS+1 );
         nvm_write_block ( tmp_buffer, ( void* ) ADDR_NVM_STNSEQ, MAX_EXT_BOARDS+1 );
-
+		DEBUG_PRINTLN("Init stage 4 done"); //Charer change
         // 5. delete sd file
         remove_file ( wtopts_filename );
-
+		DEBUG_PRINTLN("Init stage 5 done"); //Charer change
         // 6. write options
         options_save(); // write default option values
+		DEBUG_PRINTLN("Init stage 6 done"); //Charer change
 		DEBUG_PRINTLN("done");
         //======== END OF NVM RESET CODE ========
 

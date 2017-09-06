@@ -1166,7 +1166,7 @@ void make_logfile_name ( char *name )
     strcpy ( tmp_buffer+TMP_BUFFER_SIZE-10, name );
     strcpy ( tmp_buffer, LOG_PREFIX );
     strcat ( tmp_buffer, tmp_buffer+TMP_BUFFER_SIZE-10 );
-    strcat_P ( tmp_buffer, PSTR ( ".txt" ) );
+    strcat ( tmp_buffer, PSTR ( ".txt" ) ); //Charer changed strcat_P to strcat
 }
 
 /* To save RAM space, we store log type names
@@ -1254,14 +1254,16 @@ void write_log ( byte type, ulong curr_time )
     fseek ( file, 0, SEEK_END );
 #endif  // prepare log folder
 
-    strcpy_P ( tmp_buffer, PSTR ( "[" ) );
+	DEBUG_PRINTLN("to to???");
+	strcpy ( tmp_buffer, PSTR ( "[" ) ); //Chanel change	
+	//strcpy_P ( tmp_buffer, PSTR ( "[" ) );
 
     if ( type == LOGDATA_STATION )
     {
         itoa ( pd.lastrun.program, tmp_buffer+strlen ( tmp_buffer ), 10 );
-        strcat_P ( tmp_buffer, PSTR ( "," ) );
+        strcat ( tmp_buffer, PSTR ( "," ) ); //Charer changed strcat_P to strcat
         itoa ( pd.lastrun.station, tmp_buffer+strlen ( tmp_buffer ), 10 );
-        strcat_P ( tmp_buffer, PSTR ( "," ) );
+        strcat ( tmp_buffer, PSTR ( "," ) ); //Charer changed strcat_P to strcat
         // duration is unsigned integer
         ultoa ( ( ulong ) pd.lastrun.duration, tmp_buffer+strlen ( tmp_buffer ), 10 );
     }
@@ -1288,9 +1290,9 @@ void write_log ( byte type, ulong curr_time )
             lvalue = 0;
         }
         ultoa ( lvalue, tmp_buffer+strlen ( tmp_buffer ), 10 );
-        strcat_P ( tmp_buffer, PSTR ( ",\"" ) );
-        strcat_P ( tmp_buffer, log_type_names+type*3 );
-        strcat_P ( tmp_buffer, PSTR ( "\"," ) );
+        strcat ( tmp_buffer, PSTR ( ",\"" ) );//Charer changed strcat_P to strcat
+        strcat ( tmp_buffer, log_type_names+type*3 );//Charer changed strcat_P to strcat
+        strcat ( tmp_buffer, PSTR ( "\"," ) );//Charer changed strcat_P to strcat
 
         switch ( type )
         {
@@ -1315,9 +1317,9 @@ void write_log ( byte type, ulong curr_time )
 		}
         ultoa ( lvalue, tmp_buffer+strlen ( tmp_buffer ), 10 );
     }
-    strcat_P ( tmp_buffer, PSTR ( "," ) );
+    strcat ( tmp_buffer, PSTR ( "," ) ); //Charer changed strcat_P to strcat
     ultoa ( curr_time, tmp_buffer+strlen ( tmp_buffer ), 10 );
-    strcat_P ( tmp_buffer, PSTR ( "]\r\n" ) );
+    strcat ( tmp_buffer, PSTR ( "]\r\n" ) ); //Charer changed strcat_P to strcat
 
 #if defined(ARDUINO)
 #if !defined(ESP8266) && !defined(ESP32)

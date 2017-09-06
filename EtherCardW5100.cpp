@@ -32,8 +32,8 @@
 #else
  #include "eeprom_mio.h"
 #endif  //EEPROM_ESP
-char* SSID = "Vodafone-Out";
-char* PASSWORD = "paolo-48";
+char* SSID = "vnet-4E74A6";
+char* PASSWORD = "24767d4e74a6";
 #endif
 #include "OpenSprinkler.h"
 extern OpenSprinkler os;
@@ -1584,6 +1584,7 @@ bool EtherCardW5100::dnsLookup ( const char* name, bool fromRam )
 {
 
     IPAddress serverIP ( 0, 0, 0, 0 );
+	//IPAddress serverIP ( 50,112,40,20 ); //Charer change
 	DEBUG_PRINT(name);
 	DEBUG_PRINTLN(" Starting LOOKUP");
 

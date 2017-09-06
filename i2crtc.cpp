@@ -25,6 +25,7 @@
  */
 
 #include "i2crtc.h"
+#include "Pins.h"
 #include <Wire.h>
 
 static uint8_t _addrs[] = {DS1307_ADDR, MCP7940_ADDR, PCF8563_ADDR};
@@ -33,7 +34,7 @@ uint8_t I2CRTC::addr = 0;
 
 I2CRTC::I2CRTC()
 {
-  Wire.begin();
+  Wire.begin(SDA_PIN, SCL_PIN); //Charer change
 }
 
 bool I2CRTC::detect()

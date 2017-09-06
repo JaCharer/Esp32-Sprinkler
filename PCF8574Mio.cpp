@@ -57,6 +57,7 @@ void PCF8574::begin(int address)
 //
 
 #include "PCF8574Mio.h"
+#include "Pins.h"
 
 #include <Wire.h>
 
@@ -73,7 +74,7 @@ void PCF8574::begin(uint8_t deviceAddress)
 {
 	Serial.println(); Serial.print('@'); Serial.println(deviceAddress);
 	_address = deviceAddress;
-	Wire.begin();
+	Wire.begin(SDA_PIN, SCL_PIN); //Charer change
 	PCF8574::write8(0xFF);
 }
 
